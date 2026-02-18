@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mukund Kadu | Tradewise Indian Xporter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        .industrial-gradient { background: linear-gradient(135deg, #0f172a 0%, #334155 100%); }
+        .profile-border { border: 4px solid #ffffff; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+        .modal-overlay { background-color: rgba(15, 23, 42, 0.85); backdrop-filter: blur(6px); }
+        .action-card { border: 1px solid #f1f5f9; transition: all 0.2s; }
+        .action-card:active { transform: scale(0.97); background-color: #f8fafc; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center">
+
+    <div class="w-full max-w-md relative">
+        <div class="h-44 industrial-gradient w-full rounded-b-[40px] flex items-center justify-center">
+            <h2 class="text-white/20 font-bold tracking-[0.5em] text-xs uppercase">Institutional Export</h2>
+        </div>
+        <div class="absolute top-28 left-1/2 -translate-x-1/2">
+            <div class="w-32 h-32 rounded-full overflow-hidden profile-border bg-white">
+                <img src="https://ik.imagekit.io/Unicrats/Mukund%20Kadu.jpg" alt="Mukund Kadu" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full max-w-md px-6 pt-20 pb-8 text-center">
+        <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Mukund Kadu</h1>
+        <p class="text-blue-700 font-semibold tracking-wide uppercase text-[11px] mt-1">Director</p>
+        <p class="text-slate-500 text-sm mt-1 font-medium italic text-balance">Tradewise Indian Xporter Private Limited</p>
+
+        <button onclick="toggleModal(true)" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold text-lg mt-8 shadow-lg shadow-slate-200 hover:bg-slate-800 transition">
+            Save Contact
+        </button>
+
+        <div class="grid grid-cols-1 gap-3 mt-8">
+            <a href="tel:+918668990861" class="action-card flex items-center p-4 rounded-2xl bg-white shadow-sm">
+                <div class="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center mr-4 text-xl">📞</div>
+                <div class="text-left">
+                    <p class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">Mobile</p>
+                    <p class="font-bold text-slate-800">+91 86689 90861</p>
+                </div>
+            </a>
+            <a href="mailto:info@indianxporter.com" class="action-card flex items-center p-4 rounded-2xl bg-white shadow-sm">
+                <div class="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center mr-4 text-xl">✉️</div>
+                <div class="text-left">
+                    <p class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">Email</p>
+                    <p class="font-bold text-slate-800">info@indianxporter.com</p>
+                </div>
+            </a>
+            <div class="action-card flex items-center p-4 rounded-2xl bg-white shadow-sm">
+                <div class="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center mr-4 text-xl">📍</div>
+                <div class="text-left">
+                    <p class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">Office</p>
+                    <p class="font-bold text-slate-800">Mumbai, India</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="leadModal" class="hidden fixed inset-0 z-50 modal-overlay flex items-end sm:items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-[32px] p-8 relative shadow-2xl transition-all">
+            <button onclick="toggleModal(false)" class="absolute top-6 right-6 text-slate-300 hover:text-slate-500 text-xl">✕</button>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Exchange Contact</h3>
+            <p class="text-slate-500 text-sm mb-6">Enter your details to download my business card.</p>
+
+            <form id="leadForm" class="space-y-4">
+                <input type="text" name="name" placeholder="Full Name" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none">
+                <input type="email" name="email" placeholder="Email Address" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none">
+                <input type="tel" name="phone" placeholder="Mobile Number" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none">
+                <input type="text" name="company" placeholder="Company Name" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none">
+                
+                <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100">
+                    Submit & Save Contact
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Replace with your Power Automate HTTP Post URL
+        const FLOW_URL = 'YOUR_POWER_AUTOMATE_WEBHOOK_URL';
+
+        function toggleModal(show) {
+            const modal = document.getElementById('leadModal');
+            modal.classList.toggle('hidden', !show);
+        }
+
+        document.getElementById('leadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const data = Object.fromEntries(new FormData(e.target).entries());
+            
+            btn.disabled = true;
+            btn.innerText = "Syncing...";
+
+            try {
+                await fetch(FLOW_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                toggleModal(false);
+                downloadVCard();
+            } catch (err) {
+                toggleModal(false);
+                downloadVCard();
+            }
+        });
+
+        function downloadVCard() {
+            const vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:Mukund Kadu\nORG:Tradewise Indian Xporter\nTITLE:Director\nTEL;TYPE=CELL:+918668990861\nEMAIL:info@indianxporter.com\nADR;TYPE=WORK:;;Mumbai;;;;\nEND:VCARD`;
+            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = 'Mukund_Kadu.vcf'; a.click();
+        }
+    </script>
+</body>
+</html>
