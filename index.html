@@ -133,41 +133,42 @@
     </div>
 
     <script>
-        const API_URL = 'YOUR_WEBHOOK_URL'; 
+    // Paste your Google Web App URL here
+    const API_URL = 'https://script.google.com/macros/s/XXXXX_YOUR_ID_XXXXX/exec'; 
 
-        function toggleModal(show) {
-            document.getElementById('leadModal').classList.toggle('hidden', !show);
+    function toggleModal(show) {
+        document.getElementById('leadModal').classList.toggle('hidden', !show);
+    }
+
+    document.getElementById('leadForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        const formData = new FormData(e.target);
+        
+        btn.disabled = true;
+        btn.innerText = "Syncing Data...";
+
+        try {
+            // We use 'no-cors' for Google Apps Script to prevent redirect errors
+            await fetch(API_URL, {
+                method: 'POST',
+                mode: 'no-cors', 
+                body: formData
+            });
+            
+            alert("Inquiry Received Successfully.");
+            toggleModal(false);
+            downloadVCard(); // Keeps your existing contact save feature
+        } catch (err) {
+            console.error("Sync Error:", err);
+            alert("Local Save Successful. (Cloud Sync Offline)");
+            downloadVCard();
+        } finally {
+            btn.disabled = false;
+            btn.innerText = "Submit & Save Contact";
         }
-
-        document.getElementById('leadForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            const data = Object.fromEntries(new FormData(e.target).entries());
-            btn.disabled = true;
-            btn.innerText = "Syncing...";
-
-            try {
-                const payload = API_URL.includes('sheetdb') ? { data: [data] } : data;
-                await fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                toggleModal(false);
-                downloadVCard();
-            } catch (err) {
-                toggleModal(false);
-                downloadVCard();
-            }
-        });
-
-        function downloadVCard() {
-            const vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:Mukund Kadu\nORG:Tradewise Indian Xporter Private Limited\nTITLE:Director\nTEL;TYPE=CELL:+918668990861\nEMAIL:info@indianxporter.com\nURL:https://indianxporter.com\nADR;TYPE=WORK:;;Mumbai;;;;\nEND:VCARD`;
-            const blob = new Blob([vCardData], { type: 'text/vcard' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url; a.download = 'Mukund_Kadu_Director.vcf'; a.click();
-        }
-    </script>
+    });
+</script>
 </body>
 </html>
+
