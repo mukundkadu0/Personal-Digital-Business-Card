@@ -18,8 +18,8 @@
 <body class="min-h-screen flex flex-col items-center">
 
     <div class="w-full max-w-md relative">
-        <div class="h-44 industrial-gradient w-full rounded-b-[40px] flex items-center justify-center">
-            <h2 class="text-white/20 font-bold tracking-[0.5em] text-xs uppercase">Institutional Export</h2>
+        <div class="h-44 industrial-gradient w-full rounded-b-[40px] flex items-center justify-center text-center px-4">
+            <h2 class="text-white/20 font-bold tracking-[0.4em] text-[10px] uppercase">Global Sourcing & Export Hub</h2>
         </div>
         <div class="absolute top-28 left-1/2 -translate-x-1/2">
             <div class="w-32 h-32 rounded-full overflow-hidden profile-border bg-white">
@@ -31,7 +31,7 @@
     <div class="w-full max-w-md px-6 pt-20 pb-8 text-center">
         <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Mukund Kadu</h1>
         <p class="text-blue-700 font-semibold tracking-wide uppercase text-[11px] mt-1">Director</p>
-        <p class="text-slate-500 text-sm mt-1 font-medium italic text-balance">Tradewise Indian Xporter Private Limited</p>
+        <p class="text-slate-500 text-sm mt-1 font-medium italic">Tradewise Indian Xporter Private Limited</p>
 
         <button onclick="toggleModal(true)" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold text-lg mt-8 shadow-lg shadow-slate-200 hover:bg-slate-800 transition">
             Save Contact
@@ -52,13 +52,6 @@
                     <p class="font-bold text-slate-800">info@indianxporter.com</p>
                 </div>
             </a>
-            <div class="action-card flex items-center p-4 rounded-2xl bg-white shadow-sm">
-                <div class="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center mr-4 text-xl">📍</div>
-                <div class="text-left">
-                    <p class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">Office</p>
-                    <p class="font-bold text-slate-800">Mumbai, India</p>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -66,15 +59,24 @@
         <div class="bg-white w-full max-w-md rounded-[32px] p-8 relative shadow-2xl transition-all">
             <button onclick="toggleModal(false)" class="absolute top-6 right-6 text-slate-300 hover:text-slate-500 text-xl">✕</button>
             <h3 class="text-xl font-bold text-slate-900 mb-2">Exchange Contact</h3>
-            <p class="text-slate-500 text-sm mb-6">Enter your details to download my business card.</p>
+            <p class="text-slate-500 text-sm mb-6 text-balance">Share your details to save my business card and discuss your requirements.</p>
 
             <form id="leadForm" class="space-y-4">
-                <input type="text" name="name" placeholder="Full Name" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none">
-                <input type="email" name="email" placeholder="Email Address" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none">
-                <input type="tel" name="phone" placeholder="Mobile Number" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none">
-                <input type="text" name="company" placeholder="Company Name" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none">
+                <input type="text" name="name" placeholder="Full Name" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none text-sm">
+                <input type="email" name="email" placeholder="Email Address" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none text-sm">
+                <input type="tel" name="phone" placeholder="Mobile Number" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none text-sm">
+                <input type="text" name="company" placeholder="Company Name" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none text-sm">
                 
-                <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100">
+                <select name="purpose" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none text-sm text-slate-500 appearance-none">
+                    <option value="" disabled selected>Select Purpose of Contact</option>
+                    <option value="Industrial Goods Inquiry">Industrial/Engineering Goods</option>
+                    <option value="Agri-Commodities">Agri-Commodities (Spices/Pulses)</option>
+                    <option value="Logistics/Supply Chain">Logistics & Supply Chain</option>
+                    <option value="General Business Inquiry">General Business Inquiry</option>
+                    <option value="Partnership">Partnership/Manufacturer Inquiry</option>
+                </select>
+                
+                <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100 mt-2">
                     Submit & Save Contact
                 </button>
             </form>
@@ -82,8 +84,8 @@
     </div>
 
     <script>
-        // Replace with your Power Automate HTTP Post URL
-        const FLOW_URL = 'https://default4e6f69d5abf64542b8173d744ec373.4c.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/9c3c095d15344f46922248b303eabb6d/triggers/manual/paths/invoke?api-version=1';
+        // Use your Webhook URL here (SheetDB or Power Automate)
+        const API_URL = 'YOUR_WEBHOOK_OR_SHEETDB_URL';
 
         function toggleModal(show) {
             const modal = document.getElementById('leadModal');
@@ -93,16 +95,20 @@
         document.getElementById('leadForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
-            const data = Object.fromEntries(new FormData(e.target).entries());
+            const formData = new FormData(e.target);
+            const dataObj = Object.fromEntries(formData.entries());
+            
+            // Format for SheetDB (if using it)
+            const payload = API_URL.includes('sheetdb') ? { data: [dataObj] } : dataObj;
             
             btn.disabled = true;
             btn.innerText = "Syncing...";
 
             try {
-                await fetch(FLOW_URL, {
+                await fetch(API_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(payload)
                 });
                 toggleModal(false);
                 downloadVCard();
@@ -121,5 +127,4 @@
         }
     </script>
 </body>
-
 </html>
