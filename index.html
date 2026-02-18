@@ -3,80 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mukund Kadu | Tradewise Indian Xporter</title>
+    <title>Mukund Kadu | Director | Tradewise Indian Xporter Private Limited</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
-        .industrial-gradient { background: linear-gradient(135deg, #0f172a 0%, #334155 100%); }
-        .profile-border { border: 4px solid #ffffff; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
-        .modal-overlay { background-color: rgba(15, 23, 42, 0.85); backdrop-filter: blur(6px); }
-        .action-card { border: 1px solid #f1f5f9; transition: all 0.2s; }
-        .action-card:active { transform: scale(0.97); background-color: #f8fafc; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f1f5f9; 
+            color: #0f172a; 
+            margin: 0;
+            padding: 0;
+        }
+
+        /* INDUSTRIAL BACKGROUND OPTIMIZATION 
+           - 'cover' ensures the image fits perfectly without gaps
+           - 'center' keeps the focal point visible
+        */
+        .bg-industrial-header { 
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.9)), 
+                        url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .profile-ring { border: 4px solid #ffffff; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2); }
+        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .btn-primary { background: #0f172a; transition: all 0.3s ease; }
+        .btn-primary:hover { background: #1e293b; transform: translateY(-2px); }
+        .btn-whatsapp { background-color: #25D366; color: white; }
+        .btn-linkedin { background-color: #0077b5; color: white; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center">
 
-    <div class="w-full max-w-md relative">
-        <div class="h-44 industrial-gradient w-full rounded-b-[40px] flex items-center justify-center text-center px-4">
-            <h2 class="text-white/20 font-bold tracking-[0.4em] text-[10px] uppercase">Global Sourcing & Export Hub</h2>
-        </div>
-        <div class="absolute top-28 left-1/2 -translate-x-1/2">
-            <div class="w-32 h-32 rounded-full overflow-hidden profile-border bg-white">
+    <div class="w-full max-w-md bg-industrial-header h-60 rounded-b-[50px] relative flex flex-col items-center justify-start pt-12">
+        <div class="absolute -bottom-16">
+            <div class="w-32 h-32 rounded-3xl overflow-hidden profile-ring bg-white">
                 <img src="https://ik.imagekit.io/Unicrats/Mukund%20Kadu.jpg" alt="Mukund Kadu" class="w-full h-full object-cover">
             </div>
         </div>
     </div>
 
-    <div class="w-full max-w-md px-6 pt-20 pb-8 text-center">
-        <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Mukund Kadu</h1>
-        <p class="text-blue-700 font-semibold tracking-wide uppercase text-[11px] mt-1">Director</p>
-        <p class="text-slate-500 text-sm mt-1 font-medium italic">Tradewise Indian Xporter Private Limited</p>
+    <div class="w-full max-w-md px-6 pt-20 pb-10 text-center">
+        <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 leading-tight">Mukund Kadu</h1>
+        <p class="text-blue-600 font-semibold text-xs uppercase tracking-widest mt-2 italic">Director</p>
+        <p class="text-slate-500 font-medium text-sm mt-1 uppercase tracking-tighter">Tradewise Indian Xporter Private Limited</p>
+        
+        <div class="mt-6 bg-blue-50 border border-blue-100 py-3 px-4 rounded-2xl flex items-center justify-center gap-2">
+            <span class="text-xs font-bold text-blue-800 uppercase tracking-widest">B2B Portal:</span>
+            <a href="https://indianxporter.com" target="_blank" class="text-sm font-extrabold text-blue-600 underline">Indian Xporter</a>
+        </div>
 
-        <button onclick="toggleModal(true)" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold text-lg mt-8 shadow-lg shadow-slate-200 hover:bg-slate-800 transition">
-            Save Contact
-        </button>
+        <div class="mt-8">
+            <button onclick="toggleModal(true)" class="btn-primary w-full text-white py-4 rounded-2xl font-bold text-lg shadow-xl shadow-slate-300 flex items-center justify-center gap-3">
+                <i class="fa-solid fa-address-card"></i> Save Contact
+            </button>
+        </div>
 
-        <div class="grid grid-cols-1 gap-3 mt-8">
-            <a href="tel:+918668990861" class="action-card flex items-center p-4 rounded-2xl bg-white shadow-sm">
-                <div class="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center mr-4 text-xl">📞</div>
+        <div class="grid grid-cols-1 gap-3 mt-4">
+            <a href="mailto:info@indianxporter.com" class="glass-card p-4 rounded-2xl border border-white shadow-sm flex items-center gap-4">
+                <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
                 <div class="text-left">
-                    <p class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">Mobile</p>
-                    <p class="font-bold text-slate-800">+91 86689 90861</p>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase">Corporate Email</p>
+                    <p class="text-sm font-bold text-slate-800 tracking-tight">info@indianxporter.com</p>
                 </div>
             </a>
-            <a href="mailto:info@indianxporter.com" class="action-card flex items-center p-4 rounded-2xl bg-white shadow-sm">
-                <div class="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center mr-4 text-xl">✉️</div>
-                <div class="text-left">
-                    <p class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">Email</p>
-                    <p class="font-bold text-slate-800">info@indianxporter.com</p>
+
+            <a href="tel:+918668990861" class="glass-card p-4 rounded-2xl border border-white shadow-sm flex items-center gap-4">
+                <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600">
+                    <i class="fa-solid fa-phone"></i>
                 </div>
+                <div class="text-left">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase">Direct Line</p>
+                    <p class="text-sm font-bold text-slate-800">+91 86689 90861</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mt-4">
+            <a href="https://wa.me/918668990861" class="btn-whatsapp py-4 rounded-2xl shadow-md flex items-center justify-center gap-2 font-bold text-sm">
+                <i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp
+            </a>
+            <a href="https://www.linkedin.com/in/mukund-kadu/" class="btn-linkedin py-4 rounded-2xl shadow-md flex items-center justify-center gap-2 font-bold text-sm">
+                <i class="fa-brands fa-linkedin text-xl"></i> LinkedIn
+            </a>
+        </div>
+
+        <div class="mt-8">
+            <a href="https://indianxporter.com" target="_blank" class="w-full flex items-center justify-between p-5 bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-globe text-slate-400"></i>
+                    <span class="font-bold text-slate-700">indianxporter.com</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-slate-300 text-xs"></i>
             </a>
         </div>
     </div>
 
-    <div id="leadModal" class="hidden fixed inset-0 z-50 modal-overlay flex items-end sm:items-center justify-center p-4">
-        <div class="bg-white w-full max-w-md rounded-[32px] p-8 relative shadow-2xl transition-all">
-            <button onclick="toggleModal(false)" class="absolute top-6 right-6 text-slate-300 hover:text-slate-500 text-xl">✕</button>
-            <h3 class="text-xl font-bold text-slate-900 mb-2">Exchange Contact</h3>
-            <p class="text-slate-500 text-sm mb-6 text-balance">Share your details to save my business card and discuss your requirements.</p>
+    <div id="leadModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm">
+        <div class="bg-white w-full max-w-sm rounded-[40px] p-8 relative shadow-2xl">
+            <button onclick="toggleModal(false)" class="absolute top-6 right-8 text-slate-300 hover:text-slate-900 text-xl font-light">✕</button>
+            <h3 class="text-2xl font-bold text-slate-900 mb-1">Exchange Contact</h3>
+            <p class="text-slate-400 text-xs mb-6">Tradewise Indian Xporter Private Limited</p>
 
             <form id="leadForm" class="space-y-4">
-                <input type="text" name="name" placeholder="Full Name" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none text-sm">
-                <input type="email" name="email" placeholder="Email Address" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none text-sm">
-                <input type="tel" name="phone" placeholder="Mobile Number" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none text-sm">
-                <input type="text" name="company" placeholder="Company Name" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none text-sm">
+                <input type="text" name="name" placeholder="Full Name" required class="w-full p-4 rounded-2xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none text-sm">
+                <input type="tel" name="phone" placeholder="WhatsApp / Mobile" required class="w-full p-4 rounded-2xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none text-sm">
+                <input type="text" name="company" placeholder="Organization Name" required class="w-full p-4 rounded-2xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none text-sm">
                 
-                <select name="purpose" required class="w-full p-4 rounded-xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none text-sm text-slate-500 appearance-none">
-                    <option value="" disabled selected>Select Purpose of Contact</option>
-                    <option value="Industrial Goods Inquiry">Industrial/Engineering Goods</option>
-                    <option value="Agri-Commodities">Agri-Commodities (Spices/Pulses)</option>
-                    <option value="Logistics/Supply Chain">Logistics & Supply Chain</option>
-                    <option value="General Business Inquiry">General Business Inquiry</option>
-                    <option value="Partnership">Partnership/Manufacturer Inquiry</option>
+                <select name="purpose" required class="w-full p-4 rounded-2xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none text-sm text-slate-500 appearance-none">
+                    <option value="" disabled selected>Nature of Business Inquiry</option>
+                    <option value="Sourcing">Product Sourcing Inquiry</option>
+                    <option value="PortalListing">Portal Listing (Indian Xporter)</option>
+                    <option value="Partnership">Manufacturer Partnership</option>
+                    <option value="Other">Others</option>
                 </select>
+
+                <textarea name="details" placeholder="Specific requirements (Optional)" class="w-full p-4 rounded-2xl bg-slate-50 border border-slate-100 focus:ring-2 focus:ring-slate-900 outline-none text-sm h-20 resize-none"></textarea>
                 
-                <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100 mt-2">
+                <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-200">
                     Submit & Save Contact
                 </button>
             </form>
@@ -84,27 +133,21 @@
     </div>
 
     <script>
-        // Use your Webhook URL here (SheetDB or Power Automate)
-        const API_URL = 'YOUR_WEBHOOK_OR_SHEETDB_URL';
+        const API_URL = 'YOUR_WEBHOOK_URL'; 
 
         function toggleModal(show) {
-            const modal = document.getElementById('leadModal');
-            modal.classList.toggle('hidden', !show);
+            document.getElementById('leadModal').classList.toggle('hidden', !show);
         }
 
         document.getElementById('leadForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
-            const formData = new FormData(e.target);
-            const dataObj = Object.fromEntries(formData.entries());
-            
-            // Format for SheetDB (if using it)
-            const payload = API_URL.includes('sheetdb') ? { data: [dataObj] } : dataObj;
-            
+            const data = Object.fromEntries(new FormData(e.target).entries());
             btn.disabled = true;
             btn.innerText = "Syncing...";
 
             try {
+                const payload = API_URL.includes('sheetdb') ? { data: [data] } : data;
                 await fetch(API_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -119,11 +162,11 @@
         });
 
         function downloadVCard() {
-            const vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:Mukund Kadu\nORG:Tradewise Indian Xporter\nTITLE:Director\nTEL;TYPE=CELL:+918668990861\nEMAIL:info@indianxporter.com\nADR;TYPE=WORK:;;Mumbai;;;;\nEND:VCARD`;
+            const vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:Mukund Kadu\nORG:Tradewise Indian Xporter Private Limited\nTITLE:Director\nTEL;TYPE=CELL:+918668990861\nEMAIL:info@indianxporter.com\nURL:https://indianxporter.com\nADR;TYPE=WORK:;;Mumbai;;;;\nEND:VCARD`;
             const blob = new Blob([vCardData], { type: 'text/vcard' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url; a.download = 'Mukund_Kadu.vcf'; a.click();
+            a.href = url; a.download = 'Mukund_Kadu_Director.vcf'; a.click();
         }
     </script>
 </body>
