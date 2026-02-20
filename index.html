@@ -133,12 +133,35 @@
         </div>
     </div>
 
-    <script>
-    // Paste your Google Web App URL here
+   <script>
     const API_URL = 'https://script.google.com/macros/s/AKfycbyGX_ZNH4CHja7os4dfX4znz-BZg6yl0WFScuInA2CI93Ly9R5_B7K2P0PIOvgNNqeW/exec'; 
 
     function toggleModal(show) {
         document.getElementById('leadModal').classList.toggle('hidden', !show);
+    }
+
+    // This is the function that was missing
+    function downloadVCard() {
+        const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Mukund Kadu
+ORG:Tradewise Indian Xporter Private Limited
+TITLE:Director
+TEL;TYPE=CELL,VOICE:+918668990861
+EMAIL;TYPE=PREF,INTERNET:info@indianxporter.com
+URL:https://indianxporter.com
+REV:${new Date().toISOString()}
+END:VCARD`;
+
+        const blob = new Blob([vcard], { type: "text/vcard" });
+        const url = window.URL.createObjectURL(blob);
+        const newLink = document.createElement("a");
+        newLink.href = url;
+        newLink.setAttribute("download", "Mukund_Kadu_Tradewise.vcf");
+        document.body.appendChild(newLink);
+        newLink.click();
+        document.body.removeChild(newLink);
+        window.URL.revokeObjectURL(url);
     }
 
     document.getElementById('leadForm').addEventListener('submit', async (e) => {
@@ -147,23 +170,26 @@
         const formData = new FormData(e.target);
         
         btn.disabled = true;
-        btn.innerText = "Syncing Data...";
+        btn.innerText = "Processing...";
+
+        // 1. Trigger the download immediately
+        downloadVCard();
 
         try {
-            // We use 'no-cors' for Google Apps Script to prevent redirect errors
+            // 2. Sync to Google Sheets in the background
             await fetch(API_URL, {
                 method: 'POST',
                 mode: 'no-cors', 
                 body: formData
             });
             
-            alert("Inquiry Received Successfully.");
+            alert("Contact Saved & Inquiry Sent Successfully.");
             toggleModal(false);
-            downloadVCard(); // Keeps your existing contact save feature
+            e.target.reset();
         } catch (err) {
             console.error("Sync Error:", err);
-            alert("Local Save Successful. (Cloud Sync Offline)");
-            downloadVCard();
+            alert("Contact Saved. (Note: Cloud sync is currently offline)");
+            toggleModal(false);
         } finally {
             btn.disabled = false;
             btn.innerText = "Submit & Save Contact";
@@ -172,6 +198,7 @@
 </script>
 </body>
 </html>
+
 
 
 
